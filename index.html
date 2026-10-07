@@ -1,0 +1,268 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon - Online Shopping</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- TOP HEADER -->
+<header class="top-header">
+
+    <div class="amazon-logo">
+        amazon<span>.in</span>
+    </div>
+
+    <div class="delivery">
+        <small>Delivering to</small>
+        <strong>📍 India</strong>
+    </div>
+
+    <div class="search-container">
+
+        <select id="category">
+            <option>All</option>
+            <option>Electronics</option>
+            <option>Fashion</option>
+            <option>Mobiles</option>
+            <option>Home</option>
+            <option>Books</option>
+        </select>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search Amazon.in"
+        >
+
+        <button onclick="searchProduct()">🔍</button>
+
+    </div>
+
+    <div class="language">
+        🇮🇳 EN
+    </div>
+
+    <div class="account">
+        <small>Hello, sign in</small>
+        <strong>Account & Lists ▾</strong>
+    </div>
+
+    <div class="orders">
+        <small>Returns</small>
+        <strong>& Orders</strong>
+    </div>
+
+    <div class="cart" onclick="showCart()">
+        🛒
+        <span id="cartNumber">0</span>
+        <strong>Cart</strong>
+    </div>
+
+</header>
+
+
+<!-- NAVIGATION -->
+<nav class="nav-bar">
+
+    <div class="all">
+        ☰ <strong>All</strong>
+    </div>
+
+    <div>Fresh</div>
+    <div>MX Player</div>
+    <div>Sell</div>
+    <div>Best Sellers</div>
+    <div>Today's Deals</div>
+    <div>Mobiles</div>
+    <div>Electronics</div>
+    <div>Prime</div>
+    <div>Customer Service</div>
+
+</nav>
+
+
+<!-- HERO SECTION -->
+<section class="hero">
+
+    <div class="hero-content">
+
+        <p class="small-title">AMAZON SHOPPING</p>
+
+        <h1>Great deals.<br>
+        Every day.</h1>
+
+        <p>
+            Discover amazing products and exciting offers
+            for your everyday needs.
+        </p>
+
+        <button onclick="scrollToDeals()">
+            Shop Today's Deals
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- QUICK CATEGORIES -->
+<section class="category-section">
+
+    <h2>Explore Popular Categories</h2>
+
+    <div class="category-grid">
+
+        <div class="category-card">
+            <div class="category-icon">📱</div>
+            <h3>Mobiles</h3>
+            <p>Latest smartphones</p>
+            <a href="#">See more</a>
+        </div>
+
+        <div class="category-card">
+            <div class="category-icon">💻</div>
+            <h3>Electronics</h3>
+            <p>Top electronics</p>
+            <a href="#">Explore now</a>
+        </div>
+
+        <div class="category-card">
+            <div class="category-icon">👗</div>
+            <h3>Fashion</h3>
+            <p>Trending styles</p>
+            <a href="#">Shop fashion</a>
+        </div>
+
+        <div class="category-card">
+            <div class="category-icon">🏠</div>
+            <h3>Home</h3>
+            <p>Make your home better</p>
+            <a href="#">Discover</a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DEALS -->
+<section class="deals-section" id="deals">
+
+    <div class="section-heading">
+
+        <h2>Today's Deals</h2>
+
+        <a href="#">See all deals</a>
+
+    </div>
+
+    <div class="deal-products">
+
+        <!-- PRODUCT 1 -->
+        <div class="product-card">
+
+            <div class="discount">40% off</div>
+
+            <div class="product-image">
+                🎧
+            </div>
+
+            <h3>Wireless Bluetooth Headphones</h3>
+
+            <div class="rating">
+                ⭐⭐⭐⭐☆ <span>1,245</span>
+            </div>
+
+            <div class="price">
+                <span>₹</span>1,499
+            </div>
+
+            <div class="old-price">
+                M.R.P. <s>₹2,499</s>
+            </div>
+
+            <p class="delivery">
+                FREE Delivery Tomorrow
+            </p>
+
+            <button onclick="addToCart('Wireless Headphones')">
+                Add to Cart
+            </button>
+
+        </div>
+
+
+        <!-- PRODUCT 2 -->
+        <div class="product-card">
+
+            <div class="discount">25% off</div>
+
+            <div class="product-image">
+                ⌚
+            </div>
+
+            <h3>Smart Watch with Fitness Tracking</h3>
+
+            <div class="rating">
+                ⭐⭐⭐⭐⭐ <span>856</span>
+            </div>
+
+            <div class="price">
+                <span>₹</span>2,999
+            </div>
+
+            <div class="old-price">
+                M.R.P. <s>₹3,999</s>
+            </div>
+
+            <p class="delivery">
+                FREE Delivery Tomorrow
+            </p>
+
+            <button onclick="addToCart('Smart Watch')">
+                Add to Cart
+            </button>
+
+        </div>
+
+
+        <!-- PRODUCT 3 -->
+        <div class="product-card">
+
+            <div class="discount">18% off</div>
+
+            <div class="product-image">
+                📱
+            </div>
+
+            <h3>5G Smartphone 128 GB</h3>
+
+            <div class="rating">
+                ⭐⭐⭐⭐☆ <span>3,210</span>
+            </div>
+
+            <div class="price">
+                <span>₹</span>18,999
+            </div>
+
+            <div class="old-price">
+                M.R.P. <s>₹22,999</s>
+            </div>
+
+            <p class="delivery">
+                FREE Delivery Tomorrow
+            </p>
+
+            <button onclick="addToCart('5G Smartphone')">
+                Add to Cart
+            </button>
+
+        </div>
+
+
+        <!-- PRODUCT

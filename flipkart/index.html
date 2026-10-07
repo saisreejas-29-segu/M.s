@@ -1,0 +1,642 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flipkart - Online Shopping</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo-area">
+
+        <div class="logo">
+            Flipkart
+        </div>
+
+        <div class="plus">
+            Explore <b>Plus</b> ✨
+        </div>
+
+    </div>
+
+
+    <div class="search-box">
+
+        <span>🔍</span>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search for products, brands and more"
+        >
+
+        <button onclick="searchProduct()">
+            Search
+        </button>
+
+    </div>
+
+
+    <button class="login-btn" onclick="login()">
+        Login
+    </button>
+
+
+    <div class="seller">
+        Become a Seller
+    </div>
+
+
+    <div class="more">
+        More ▾
+    </div>
+
+
+    <div class="cart" onclick="showCart()">
+
+        🛒
+
+        Cart
+
+        <span id="cartCount">0</span>
+
+    </div>
+
+</header>
+
+
+<!-- ================= CATEGORY NAVIGATION ================= -->
+
+<nav class="category-nav">
+
+    <div class="category">
+        <div class="category-icon">🛒</div>
+        <p>Grocery</p>
+    </div>
+
+    <div class="category">
+        <div class="category-icon">📱</div>
+        <p>Mobiles</p>
+    </div>
+
+    <div class="category">
+        <div class="category-icon">👗</div>
+        <p>Fashion</p>
+    </div>
+
+    <div class="category">
+        <div class="category-icon">💻</div>
+        <p>Electronics</p>
+    </div>
+
+    <div class="category">
+        <div class="category-icon">🛋️</div>
+        <p>Home</p>
+    </div>
+
+    <div class="category">
+        <div class="category-icon">📺</div>
+        <p>Appliances</p>
+    </div>
+
+    <div class="category">
+        <div class="category-icon">✈️</div>
+        <p>Travel</p>
+    </div>
+
+    <div class="category">
+        <div class="category-icon">🎁</div>
+        <p>Top Offers</p>
+    </div>
+
+    <div class="category">
+        <div class="category-icon">🧸</div>
+        <p>Beauty & Toys</p>
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <p class="festival">
+            BIG SHOPPING DAYS
+        </p>
+
+        <h1>
+            Big Savings.<br>
+            Big Shopping.
+        </h1>
+
+        <p>
+            Discover amazing offers across mobiles,
+            fashion, electronics and more.
+        </p>
+
+        <button onclick="shopNow()">
+            SHOP NOW
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= TOP OFFERS ================= -->
+
+<section class="section">
+
+    <div class="section-header">
+
+        <h2>Top Offers</h2>
+
+        <button onclick="viewAll()">
+            VIEW ALL
+        </button>
+
+    </div>
+
+
+    <div class="offer-products">
+
+
+        <!-- OFFER 1 -->
+
+        <div class="offer-card">
+
+            <div class="offer-image">
+                📱
+            </div>
+
+            <h3>Latest Smartphones</h3>
+
+            <p class="green">
+                From ₹9,999
+            </p>
+
+            <p class="small">
+                No Cost EMI available
+            </p>
+
+            <button onclick="addToCart('Smartphone')">
+                View Deal
+            </button>
+
+        </div>
+
+
+        <!-- OFFER 2 -->
+
+        <div class="offer-card">
+
+            <div class="offer-image">
+                💻
+            </div>
+
+            <h3>Laptops</h3>
+
+            <p class="green">
+                Up to 35% Off
+            </p>
+
+            <p class="small">
+                Limited time offer
+            </p>
+
+            <button onclick="addToCart('Laptop')">
+                View Deal
+            </button>
+
+        </div>
+
+
+        <!-- OFFER 3 -->
+
+        <div class="offer-card">
+
+            <div class="offer-image">
+                👟
+            </div>
+
+            <h3>Sports Shoes</h3>
+
+            <p class="green">
+                Min. 50% Off
+            </p>
+
+            <p class="small">
+                Trending styles
+            </p>
+
+            <button onclick="addToCart('Sports Shoes')">
+                View Deal
+            </button>
+
+        </div>
+
+
+        <!-- OFFER 4 -->
+
+        <div class="offer-card">
+
+            <div class="offer-image">
+                🎧
+            </div>
+
+            <h3>Headphones</h3>
+
+            <p class="green">
+                Starting ₹699
+            </p>
+
+            <p class="small">
+                Best selling products
+            </p>
+
+            <button onclick="addToCart('Headphones')">
+                View Deal
+            </button>
+
+        </div>
+
+
+        <!-- OFFER 5 -->
+
+        <div class="offer-card">
+
+            <div class="offer-image">
+                ⌚
+            </div>
+
+            <h3>Smart Watches</h3>
+
+            <p class="green">
+                Up to 60% Off
+            </p>
+
+            <p class="small">
+                Shop now
+            </p>
+
+            <button onclick="addToCart('Smart Watch')">
+                View Deal
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= BEST DEALS ================= -->
+
+<section class="section">
+
+    <div class="section-header">
+
+        <h2>Best Deals For You</h2>
+
+        <button onclick="viewAll()">
+            VIEW ALL
+        </button>
+
+    </div>
+
+
+    <div class="products">
+
+
+        <!-- PRODUCT 1 -->
+
+        <div class="product-card">
+
+            <div class="discount">
+                30% OFF
+            </div>
+
+            <div class="product-image">
+                📱
+            </div>
+
+            <h3>
+                Premium 5G Smartphone
+            </h3>
+
+            <div class="rating">
+                4.5 ★
+            </div>
+
+            <p class="reviews">
+                3,245 Ratings & Reviews
+            </p>
+
+            <p class="price">
+                ₹14,999
+            </p>
+
+            <p class="old-price">
+                ₹21,999
+            </p>
+
+            <p class="offer">
+                Extra ₹1,000 off
+            </p>
+
+            <button onclick="addToCart('Premium 5G Smartphone')">
+                Add to Cart
+            </button>
+
+        </div>
+
+
+        <!-- PRODUCT 2 -->
+
+        <div class="product-card">
+
+            <div class="discount">
+                25% OFF
+            </div>
+
+            <div class="product-image">
+                💻
+            </div>
+
+            <h3>
+                Performance Laptop
+            </h3>
+
+            <div class="rating">
+                4.4 ★
+            </div>
+
+            <p class="reviews">
+                1,245 Ratings & Reviews
+            </p>
+
+            <p class="price">
+                ₹49,999
+            </p>
+
+            <p class="old-price">
+                ₹65,999
+            </p>
+
+            <p class="offer">
+                Bank Offer Available
+            </p>
+
+            <button onclick="addToCart('Performance Laptop')">
+                Add to Cart
+            </button>
+
+        </div>
+
+
+        <!-- PRODUCT 3 -->
+
+        <div class="product-card">
+
+            <div class="discount">
+                40% OFF
+            </div>
+
+            <div class="product-image">
+                👟
+            </div>
+
+            <h3>
+                Running Sports Shoes
+            </h3>
+
+            <div class="rating">
+                4.3 ★
+            </div>
+
+            <p class="reviews">
+                2,876 Ratings & Reviews
+            </p>
+
+            <p class="price">
+                ₹1,299
+            </p>
+
+            <p class="old-price">
+                ₹2,199
+            </p>
+
+            <p class="offer">
+                Free Delivery
+            </p>
+
+            <button onclick="addToCart('Running Shoes')">
+                Add to Cart
+            </button>
+
+        </div>
+
+
+        <!-- PRODUCT 4 -->
+
+        <div class="product-card">
+
+            <div class="discount">
+                35% OFF
+            </div>
+
+            <div class="product-image">
+                🎧
+            </div>
+
+            <h3>
+                Wireless Bluetooth Headphones
+            </h3>
+
+            <div class="rating">
+                4.5 ★
+            </div>
+
+            <p class="reviews">
+                4,560 Ratings & Reviews
+            </p>
+
+            <p class="price">
+                ₹899
+            </p>
+
+            <p class="old-price">
+                ₹1,499
+            </p>
+
+            <p class="offer">
+                Special Price
+            </p>
+
+            <button onclick="addToCart('Bluetooth Headphones')">
+                Add to Cart
+            </button>
+
+        </div>
+
+
+        <!-- PRODUCT 5 -->
+
+        <div class="product-card">
+
+            <div class="discount">
+                45% OFF
+            </div>
+
+            <div class="product-image">
+                🎒
+            </div>
+
+            <h3>
+                College Laptop Backpack
+            </h3>
+
+            <div class="rating">
+                4.2 ★
+            </div>
+
+            <p class="reviews">
+                1,876 Ratings & Reviews
+            </p>
+
+            <p class="price">
+                ₹799
+            </p>
+
+            <p class="old-price">
+                ₹1,499
+            </p>
+
+            <p class="offer">
+                Free Delivery
+            </p>
+
+            <button onclick="addToCart('Laptop Backpack')">
+                Add to Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= RECOMMENDATION ================= -->
+
+<section class="recommendation">
+
+    <h2>
+        Login for the best Flipkart experience
+    </h2>
+
+    <p>
+        Get personalized recommendations,
+        offers and faster checkout.
+    </p>
+
+    <button onclick="login()">
+        Login
+    </button>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="back-top" onclick="topFunction()">
+        Back to top
+    </div>
+
+
+    <div class="footer-main">
+
+
+        <div>
+            <h3>ABOUT</h3>
+
+            <p>Contact Us</p>
+            <p>About Us</p>
+            <p>Careers</p>
+            <p>Flipkart Stories</p>
+            <p>Press</p>
+        </div>
+
+
+        <div>
+            <h3>GROUP COMPANIES</h3>
+
+            <p>Flipkart Wholesale</p>
+            <p>Myntra</p>
+            <p>Cleartrip</p>
+            <p>Shopsy</p>
+        </div>
+
+
+        <div>
+            <h3>HELP</h3>
+
+            <p>Payments</p>
+            <p>Shipping</p>
+            <p>Cancellation & Returns</p>
+            <p>FAQ</p>
+        </div>
+
+
+        <div>
+            <h3>CONSUMER POLICY</h3>
+
+            <p>Cancellation & Returns</p>
+            <p>Terms Of Use</p>
+            <p>Security</p>
+            <p>Privacy</p>
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <h2>Flipkart</h2>
+
+        <p>
+            © 2026 Flipkart UI Template
+        </p>
+
+        <p>
+            Created by Gowthami |
+            UI Template Collection Hackathon
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
+```
