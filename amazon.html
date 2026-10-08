@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#131921">
+	<title>Amazon - Online Shopping</title>
+	<style>
+		:root {
+			color-scheme: light;
+			--ink: #0f1111;
+			--navy: #131921;
+			--navy-light: #232f3e;
+			--orange: #ff9900;
+			--yellow: #ffd814;
+			--paper: #eaeded;
+			--line: #d5d9d9;
+		}
+
+		* { box-sizing: border-box; }
+
+		html { scroll-behavior: smooth; }
+
+		body {
+			margin: 0;
+			background: var(--paper);
+			color: var(--ink);
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		button, input, select { font: inherit; }
+		button { cursor: pointer; }
+
+		.top-header {
+			min-height: 68px;
+			display: flex;
+			align-items: center;
+			gap: 20px;
+			padding: 10px 24px;
+			background: var(--navy);
+			color: #fff;
+		}
+
+		.logo {
+			flex: 0 0 auto;
+			color: #fff;
+			font-size: 29px;
+			font-weight: 700;
+			letter-spacing: -1.5px;
+			text-decoration: none;
+		}
+
+		.logo span { color: var(--orange); }
+
+		.delivery, .account, .orders {
+			flex: 0 0 auto;
+			font-size: 12px;
+			line-height: 1.35;
+			white-space: nowrap;
+		}
+
+		.delivery small, .account small, .orders small {
+			display: block;
+			color: #d5d9d9;
+			font-size: 11px;
+		}
+
+		.delivery strong, .account strong, .orders strong { font-size: 14px; }
+
+		.search {
+			display: flex;
+			flex: 1 1 280px;
+			min-width: 150px;
+			height: 42px;
+			overflow: hidden;
+			border-radius: 5px;
+			background: #fff;
+		}
+
+		.search select {
+			width: 112px;
+			padding: 0 8px;
+			border: 0;
+			border-right: 1px solid var(--line);
+			background: #f3f3f3;
+			color: #333;
+		}
+
+		.search input {
+			flex: 1;
+			min-width: 0;
+			padding: 0 12px;
+			border: 0;
+			outline: 0;
+		}
+
+		.search button {
+			width: 50px;
+			border: 0;
+			background: #febd69;
+			color: var(--navy);
+			font-size: 20px;
+		}
+
+		.header-action {
+			padding: 4px 0;
+			border: 0;
+			background: transparent;
+			color: #fff;
+			text-align: left;
+			white-space: nowrap;
+		}
+
+		.header-action small, .header-action strong { display: block; }
+		.header-action small { font-size: 11px; }
+		.header-action strong { font-size: 14px; }
+
+		.cart {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			padding: 5px 0;
+			border: 0;
+			background: transparent;
+			color: #fff;
+			font-weight: 700;
+			white-space: nowrap;
+		}
+
+		.cart-icon { font-size: 25px; }
+		#cartNumber { color: #ffb84d; }
+
+		.nav-bar {
+			display: flex;
+			align-items: center;
+			gap: 26px;
+			min-height: 42px;
+			overflow-x: auto;
+			padding: 0 24px;
+			background: var(--navy-light);
+			color: #fff;
+			font-size: 14px;
+			white-space: nowrap;
+		}
+
+		.nav-bar a {
+			color: inherit;
+			text-decoration: none;
+		}
+
+		.hero {
+			display: flex;
+			align-items: center;
+			min-height: 370px;
+			padding: 48px max(7vw, 28px);
+			background: linear-gradient(110deg, #192b39 0%, #31515a 58%, #ad6824 100%);
+			color: #fff;
+		}
+
+		.hero-content { max-width: 620px; }
+
+		.eyebrow {
+			margin: 0 0 12px;
+			color: #ffd27a;
+			font-size: 13px;
+			font-weight: 700;
+			letter-spacing: 1.5px;
+			text-transform: uppercase;
+		}
+
+		.hero h1 {
+			margin: 0 0 16px;
+			font-size: clamp(38px, 5vw, 58px);
+			line-height: 1.04;
+		}
+
+		.hero p {
+			max-width: 510px;
+			margin: 0 0 26px;
+			font-size: 18px;
+			line-height: 1.55;
+		}
+
+		.primary-button {
+			min-height: 44px;
+			padding: 0 22px;
+			border: 0;
+			border-radius: 4px;
+			background: var(--yellow);
+			color: var(--ink);
+			font-weight: 700;
+		}
+
+		.primary-button:hover { background: #f7ca00; }
+
+		main { padding: 1px 24px 32px; }
+
+		.section {
+			max-width: 1440px;
+			margin: 22px auto;
+			padding: 24px;
+			background: #fff;
+		}
+
+		.section-heading {
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+			gap: 16px;
+			margin-bottom: 18px;
+		}
+
+		.section h2 {
+			margin: 0;
+			font-size: 24px;
+		}
+
+		.section-link {
+			color: #007185;
+			font-size: 14px;
+			text-decoration: none;
+		}
+
+		.categories {
+			display: grid;
+			grid-template-columns: repeat(6, minmax(0, 1fr));
+			gap: 14px;
+		}
+
+		.category {
+			display: grid;
+			min-height: 126px;
+			align-content: center;
+			justify-items: center;
+			gap: 10px;
+			padding: 14px 8px;
+			border: 1px solid var(--line);
+			color: var(--ink);
+			text-align: center;
+			text-decoration: none;
+		}
+
+		.category:hover { border-color: #879596; }
+		.category-icon { font-size: 38px; }
+		.category strong { font-size: 14px; }
+
+		.products {
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			gap: 16px;
+		}
+
+		.product-card {
+			display: flex;
+			min-width: 0;
+			flex-direction: column;
+			padding: 16px;
+			border: 1px solid var(--line);
+		}
+
+		.product-image {
+			display: grid;
+			min-height: 170px;
+			place-items: center;
+			margin-bottom: 14px;
+			background: #f6f7f7;
+			font-size: 68px;
+		}
+
+		.product-card h3 {
+			margin: 0 0 8px;
+			font-size: 16px;
+			line-height: 1.4;
+		}
+
+		.rating { margin-bottom: 8px; color: #b45b00; font-size: 13px; }
+		.price { margin: 0 0 14px; font-size: 20px; font-weight: 700; }
+		.price small { font-size: 12px; font-weight: 400; }
+
+		.product-card button {
+			min-height: 38px;
+			margin-top: auto;
+			border: 1px solid #f0c14b;
+			border-radius: 18px;
+			background: #ffd814;
+			color: var(--ink);
+		}
+
+		.product-card button:hover { background: #f7ca00; }
+
+		footer {
+			padding: 26px;
+			background: var(--navy-light);
+			color: #fff;
+			text-align: center;
+		}
+
+		.back-top {
+			display: block;
+			width: 100%;
+			padding: 14px;
+			border: 0;
+			background: #37475a;
+			color: #fff;
+		}
+
+		@media (max-width: 980px) {
+			.top-header { gap: 14px; padding-inline: 16px; }
+			.delivery, .orders { display: none; }
+			.categories { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+			.products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		}
+
+		@media (max-width: 620px) {
+			.top-header { flex-wrap: wrap; gap: 12px; }
+			.logo { font-size: 25px; }
+			.account { margin-left: auto; }
+			.search { order: 5; flex-basis: 100%; }
+			.search select { width: 92px; }
+			.header-action.account { display: none; }
+			.nav-bar { gap: 20px; padding-inline: 16px; }
+			.hero { min-height: 330px; padding: 38px 24px; }
+			.hero p { font-size: 16px; }
+			main { padding-inline: 12px; }
+			.section { margin: 14px auto; padding: 18px 14px; }
+			.section h2 { font-size: 21px; }
+			.categories { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+			.products { grid-template-columns: 1fr; }
+			.product-card { display: grid; grid-template-columns: 105px 1fr; column-gap: 14px; }
+			.product-image { grid-row: span 4; min-height: 120px; margin: 0; font-size: 48px; }
+			.product-card h3, .rating, .price { align-self: start; }
+			.product-card button { grid-column: 2; }
+		}
+	</style>
+</head>
+<body>
+	<header class="top-header">
+		<a class="logo" href="#top" aria-label="Amazon home">amazon<span>.</span></a>
+		<div class="delivery"><small>Deliver to</small><strong>United States</strong></div>
+
+		<form class="search" onsubmit="searchProduct(); return false;">
+			<select id="category" aria-label="Search category">
+				<option>All</option>
+				<option>Electronics</option>
+				<option>Home</option>
+				<option>Fashion</option>
+				<option>Books</option>
+			</select>
+			<input id="searchInput" type="search" placeholder="Search Amazon" aria-label="Search Amazon">
+			<button type="submit" aria-label="Search">⌕</button>
+		</form>
+
+		<button class="header-action account" type="button" onclick="signIn()">
+			<small>Hello, sign in</small><strong>Account &amp; Lists</strong>
+		</button>
+		<a class="header-action orders" href="#deals"><small>Returns</small><strong>&amp; Orders</strong></a>
+		<button class="cart" type="button" onclick="showCart()" aria-label="View cart, item count"><span class="cart-icon">🛒</span><span id="cartNumber">0</span> Cart</button>
+	</header>
+
+	<nav class="nav-bar" aria-label="Main navigation">
+		<a href="#categories"><strong>☰ All</strong></a>
+		<a href="#deals">Today's Deals</a>
+		<a href="#categories">Customer Service</a>
+		<a href="#featured">Gift Cards</a>
+		<a href="#featured">Registry</a>
+		<a href="#deals">Best Sellers</a>
+	</nav>
+
+	<section class="hero" id="top">
+		<div class="hero-content">
+			<p class="eyebrow">Everyday finds, delivered</p>
+			<h1>Make room for something good.</h1>
+			<p>Explore useful picks for your home, work, and everything in between.</p>
+			<button class="primary-button" type="button" onclick="scrollToDeals()">Shop today's deals</button>
+		</div>
+	</section>
+
+	<main>
+		<section class="section" id="categories" aria-labelledby="category-title">
+			<div class="section-heading"><h2 id="category-title">Shop by category</h2></div>
+			<div class="categories">
+				<a class="category" href="#featured"><span class="category-icon" aria-hidden="true">📱</span><strong>Electronics</strong></a>
+				<a class="category" href="#featured"><span class="category-icon" aria-hidden="true">🏠</span><strong>Home</strong></a>
+				<a class="category" href="#featured"><span class="category-icon" aria-hidden="true">👟</span><strong>Fashion</strong></a>
+				<a class="category" href="#featured"><span class="category-icon" aria-hidden="true">📚</span><strong>Books</strong></a>
+				<a class="category" href="#featured"><span class="category-icon" aria-hidden="true">🎧</span><strong>Audio</strong></a>
+				<a class="category" href="#featured"><span class="category-icon" aria-hidden="true">☕</span><strong>Kitchen</strong></a>
+			</div>
+		</section>
+
+		<section class="section" id="featured" aria-labelledby="featured-title">
+			<div class="section-heading">
+				<h2 id="featured-title">Popular picks</h2>
+				<a class="section-link" href="#deals">See today's deals</a>
+			</div>
+			<div class="products">
+				<article class="product-card">
+					<div class="product-image" aria-hidden="true">🎧</div>
+					<h3>Wireless headphones with comfortable fit</h3>
+					<div class="rating" aria-label="Rated 4.5 out of 5">★★★★☆ <span>(2,418)</span></div>
+					<p class="price"><small>$</small>39<small>.99</small></p>
+					<button type="button" onclick="addToCart('Wireless Headphones')">Add to Cart</button>
+				</article>
+				<article class="product-card">
+					<div class="product-image" aria-hidden="true">⌚</div>
+					<h3>Smart watch with activity and sleep tracking</h3>
+					<div class="rating" aria-label="Rated 4 out of 5">★★★★☆ <span>(1,207)</span></div>
+					<p class="price"><small>$</small>59<small>.00</small></p>
+					<button type="button" onclick="addToCart('Smart Watch')">Add to Cart</button>
+				</article>
+				<article class="product-card">
+					<div class="product-image" aria-hidden="true">🔊</div>
+					<h3>Portable Bluetooth speaker, water resistant</h3>
+					<div class="rating" aria-label="Rated 4.5 out of 5">★★★★☆ <span>(864)</span></div>
+					<p class="price"><small>$</small>28<small>.49</small></p>
+					<button type="button" onclick="addToCart('Bluetooth Speaker')">Add to Cart</button>
+				</article>
+				<article class="product-card">
+					<div class="product-image" aria-hidden="true">🎒</div>
+					<h3>Everyday backpack with laptop compartment</h3>
+					<div class="rating" aria-label="Rated 4 out of 5">★★★★☆ <span>(532)</span></div>
+					<p class="price"><small>$</small>34<small>.95</small></p>
+					<button type="button" onclick="addToCart('Everyday Backpack')">Add to Cart</button>
+				</article>
+			</div>
+		</section>
+
+		<section class="section" id="deals" aria-labelledby="deals-title">
+			<div class="section-heading">
+				<h2 id="deals-title">Today's deals</h2>
+				<a class="section-link" href="#top">Back to top</a>
+			</div>
+			<div class="products">
+				<article class="product-card">
+					<div class="product-image" aria-hidden="true">📷</div>
+					<h3>Compact instant camera for everyday moments</h3>
+					<div class="rating" aria-label="Rated 4.5 out of 5">★★★★☆ <span>(976)</span></div>
+					<p class="price"><small>$</small>74<small>.50</small></p>
+					<button type="button" onclick="addToCart('Instant Camera')">Add to Cart</button>
+				</article>
+				<article class="product-card">
+					<div class="product-image" aria-hidden="true">🪴</div>
+					<h3>Indoor planter set for bright windowsills</h3>
+					<div class="rating" aria-label="Rated 4 out of 5">★★★★☆ <span>(311)</span></div>
+					<p class="price"><small>$</small>21<small>.99</small></p>
+					<button type="button" onclick="addToCart('Indoor Planter Set')">Add to Cart</button>
+				</article>
+				<article class="product-card">
+					<div class="product-image" aria-hidden="true">⌨️</div>
+					<h3>Wireless keyboard for home and office</h3>
+					<div class="rating" aria-label="Rated 4.5 out of 5">★★★★☆ <span>(1,044)</span></div>
+					<p class="price"><small>$</small>32<small>.79</small></p>
+					<button type="button" onclick="addToCart('Wireless Keyboard')">Add to Cart</button>
+				</article>
+				<article class="product-card">
+					<div class="product-image" aria-hidden="true">🍳</div>
+					<h3>Nonstick cookware set for everyday meals</h3>
+					<div class="rating" aria-label="Rated 4 out of 5">★★★★☆ <span>(687)</span></div>
+					<p class="price"><small>$</small>46<small>.00</small></p>
+					<button type="button" onclick="addToCart('Cookware Set')">Add to Cart</button>
+				</article>
+			</div>
+		</section>
+	</main>
+
+	<button class="back-top" type="button" onclick="topFunction()">Back to top</button>
+	<footer>Amazon-style storefront demo</footer>
+	<script src="script.js"></script>
+</body>
+</html>
